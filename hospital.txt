@@ -1,0 +1,95 @@
+create table justdo_user (
+      user_id varchar2(100) primary key,
+      user_passwd varchar2(30) not null,
+      user_name varchar2(100) not null,
+      user_tel varchar2(20),
+      user_gender varchar2(100) not null,
+      user_dis varchar2(100),
+      user_p_name varchar(100),
+      user_p_tel varchar(30)
+   );
+
+insert into justdo_user values('admin', 'admin', '관리자', '010-1234-5678', '남', '', '', '');
+insert into justdo_user values('aaa', '111', '김유신', '010-1111-1111', '남', '', '', ''); 
+insert into justdo_user values('bbb', '222', '조용필', '010-2222-2222', '남', '', '', ''); 
+insert into justdo_user values('ccc', '333', '조관우', '010-3333-3333', '여', '결핵', '', ''); 
+insert into justdo_user values('ddd', '444', '양규호', '010-4444-4444', '여', '중성화', '임두혁', '010-1231-1212'); 
+insert into justdo_user values('eee', '555', '규호띠', '010-5555-5555', '남', '방광염', '', ''); 
+insert into justdo_user values('fff', '666', '이규호', '010-6666-6666', '남', '', '', ''); 
+insert into justdo_user values('ggg', '777', '이규민', '010-7777-7777', '남', '', '', ''); 
+insert into justdo_user values('hhh', '888', '우정국', '010-8888-8888', '남', '', '이정훈', '010-5678-1234'); 
+insert into justdo_user values('iii', '999', '박대근', '010-9999-9999', '남', '', '유제욱', '010-1357-2468'); 
+insert into justdo_user values('jjj', '111', '안요한', '010-1212-1212', '남', '', '', '');
+insert into justdo_user values('kkk', '222', '우영우', '010-1234-1234', '여', '', '우광호', '010-0000-0000'); 
+insert into justdo_user values('lll', '333', '이준호', '010-5678-1234', '남', '', '', ''); 
+insert into justdo_user values('mmm', '444', '이정훈', '010-7878-7878', '남', '', '', ''); 
+insert into justdo_user values('nnn', '555', '유제욱', '010-9876-5432', '남', '', '', ''); 
+
+create table justdo_doctor (
+      dr_id varchar2(20) primary key,
+      dr_passwd varchar2(20) not null,
+      dr_name varchar2(20) not null,
+      dr_tel varchar2(20) not null,
+      dr_major varchar(30) not null
+   );
+
+insert into justdo_doctor values('doctor', 'doctor', '김영식', '010-1111-1111', '내과');
+insert into justdo_doctor values('doctor1', 'doctor1', '함형일', '010-2222-2222', '이비인후과');
+
+create table justdo_reserv(
+      re_num number primary key,
+      re_date varchar2(30) not null,
+      re_time varchar2(30) not null,
+      re_reg_date date not null,
+      re_col varchar(1000),
+      user_id varchar2(30),
+      dr_id varchar2(20)
+   );
+
+CREATE SEQUENCE justdo_reserv_seq
+           INCREMENT BY 1
+           START WITH   1
+           MAXVALUE 999999
+           NOCYCLE
+           NOCACHE;
+
+create table justdo_board(
+      b_no number primary key,
+      b_title varchar2(1000) not null,
+      b_write varchar2(4000) not null,
+      b_reg_date date not null,
+      readcount number default 0,
+      ref number not null,
+      re_step number not null,
+      re_level number not null,
+      fk_user_id1 varchar2(20),
+      fk_dr_id1 varchar(20)
+);
+
+CREATE SEQUENCE justdo_board_seq
+           INCREMENT BY 1
+           START WITH   1
+           MAXVALUE 999999
+           NOCYCLE
+           NOCACHE;
+
+create table justdo_notice(
+      not_no number primary key,
+      not_title varchar2(1000) not null,
+      not_write varchar2(4000) not null,
+      not_reg_date date not null,
+      readcount number default 0,
+      ref number not null,
+      re_step number not null,
+      re_level number not null,
+      fk_dr_id2 varchar2(20)
+   );
+
+CREATE SEQUENCE justdo_notice_seq
+           INCREMENT BY 1
+           START WITH   1
+           MAXVALUE 999999
+           NOCYCLE
+           NOCACHE;
+
+commit;

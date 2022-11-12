@@ -1,0 +1,9 @@
+drop table justdo_reserv;
+drop table justdo_notice;
+drop table justdo_board;
+drop table justdo_doctor;
+drop table justdo_user;
+
+drop sequence justdo_board_seq;
+drop sequence justdo_notice_seq;
+drop sequence justdo_reserv_seq;
